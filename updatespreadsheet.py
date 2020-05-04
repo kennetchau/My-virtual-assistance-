@@ -1,4 +1,4 @@
-"""Codes that allow me to modify my spreadsheet as well as looking up the new stock price"""
+"""Codes that allow me to modify my spreadsheet(reworking) as well as looking up the new stock price"""
 import openpyxl
 import yfinance as yf   # downloading data from yahoo finance
 import generalfunction
