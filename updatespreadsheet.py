@@ -70,7 +70,7 @@ def main():
             if option == "y":
                 period = generalfunction.getnumber("How many days of data do you want? ")
                 print("The price of " + Whattofind + " is\n" + str(whattofindprice.history(period=(str(period) +"d"))))
-        if action ==2:
+        elif action ==2:
             calc = input("Type Calculation: \n")
             print("Answer: " + str(eval(calc)))
 
