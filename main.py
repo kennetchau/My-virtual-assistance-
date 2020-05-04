@@ -6,6 +6,8 @@ import updatespreadsheet
 import apcalculator
 import random
 import generalfunction
+import glob,os
+
 
 
 def chkpromot(sentence):
@@ -17,6 +19,8 @@ def chkpromot(sentence):
             return 2
         if word.lower() in fgo:
             return 3
+        if word.lower() in note:
+            return 4
         if word.lower() in exit:
             return 999
 
@@ -29,11 +33,13 @@ stock = ["stock","stocks","investing"]
 time = ["time"]
 fgo = ["ap", "fgo", "fate"]
 exit =["bye","good night","see you later","later","close","exit","Goodbye"]
+note= ["notes","note"]
 
 DT = datetime.datetime.now()
 currenttime = "It is " + DT.strftime("%H:%M:%S") + " now"
 
 yourname = ("Anew")
+
 
 if DT.strftime("%H") < "12":
     print("Good morning boss, " + yourname +" at your service")
@@ -72,8 +78,29 @@ while chkpromot(promot) != 999:
             apcalculator.cal()
         elif choice ==2:
             apcalculator.showhistory()
+    elif chkpromot(promot)==4:
+        print("Which notebook do you want to open?")
+        currentpathnote = os.getcwd()+"/note"
+        os.chdir(str(currentpathnote))
+        for file in glob.glob("*.txt"):
+            print(file)
+        filename = input("")
+        end = 0
+        while end != 1:
+            action = generalfunction.getnumber("What do you want to do? \nread press 1\nwrite press 2\nquit press 0\n")
+            if action == 0:
+                end =1
+            elif action == 1:
+                file1 = open(filename, "r")
+                print(file1.readlines())
+                file1.close()
+            elif action == 2:
+                file1 = open(filename, "a+")
+                messages = input("What's the messages? ")
+                file1.write(messages+"\n")
+                file1.close()
     else:
-        print("Please say something")
+        print("Please say/type something")
 
     if modechoice.lower() == "y":
         promot = generalfunction.sR()
