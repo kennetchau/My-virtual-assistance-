@@ -45,7 +45,7 @@ def main():
     action = 1
     while action != 0:
         print("What do you want to do today\n")
-        action = generalfunction.getnumber("\npress 1 to search current and historic stock price, 0 to quit ")
+        action = generalfunction.getnumber("\npress 1 to search current and historic stock price \npress 2 to use the calculator \n0 to quit ")
         print(action)
         #if action == 1:
             #Whattofind = input("What you want to find? ")
@@ -70,7 +70,9 @@ def main():
             if option == "y":
                 period = generalfunction.getnumber("How many days of data do you want? ")
                 print("The price of " + Whattofind + " is\n" + str(whattofindprice.history(period=(str(period) +"d"))))
-
+        if action ==2:
+            calc = input("Type Calculation: \n")
+            print("Answer: " + str(eval(calc)))
 
 
 
