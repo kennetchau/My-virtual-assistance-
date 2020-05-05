@@ -3,6 +3,7 @@ import openpyxl
 import yfinance as yf   # downloading data from yahoo finance
 import generalfunction
 
+
 #theFile = openpyxl.load_workbook("stock portfolio.xlsx")
 #allSheetNames = theFile.sheetnames
 #currentSheet = 0
@@ -45,7 +46,7 @@ def main():
     action = 1
     while action != 0:
         print("What do you want to do today\n")
-        action = generalfunction.getnumber("\npress 1 to search current and historic stock price \npress 2 to use the calculator \n0 to quit ")
+        action = generalfunction.getnumber("\npress 1 to search current and historic stock price \npress 2 to download data about a stock \npress 3 to use the calculator \n0 to quit ")
         print(action)
         #if action == 1:
             #Whattofind = input("What you want to find? ")
@@ -61,7 +62,7 @@ def main():
             #value = get_role_value(specificCellletter)
             #price = currentSheet['C' + str(value)].value
             #print("\nThe value of the stock "+ Whattofind +" is "+ str(price) +"\n")
-        if action == 1:
+        if action == 1: 
             Whattofind = input("Which stock price are you interested? ")
             whattofindprice = yf.Ticker(Whattofind)
             print("The price of " + Whattofind + " is\n" + str(whattofindprice.history(period="10d")))
@@ -70,7 +71,12 @@ def main():
             if option == "y":
                 period = generalfunction.getnumber("How many days of data do you want? ")
                 print("The price of " + Whattofind + " is\n" + str(whattofindprice.history(period=(str(period) +"d"))))
-        elif action ==2:
+        elif action == 2:
+            Whattofind = input("Which stock price are you interested? ")
+            startdate = input("Startdate (format: YYYY-MM-DD): ")
+            enddate = input("Enddate (format: YYYY-MM-DD): ")
+            data = yf.download(str(Whattofind), start=str(startdate), end=str(enddate)).to_csv(str(Whattofind) + ".csv")
+        elif action == 3:
             calc = input("Type Calculation: \n")
             print("Answer: " + str(eval(calc)))
 
