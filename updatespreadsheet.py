@@ -73,7 +73,7 @@ def main():
                 period = generalfunction.getnumber("How many days of data do you want? ")
                 print("The price of " + Whattofind + " is\n" + str(whattofindprice.history(period=(str(period) +"d"))))
         elif action == 2:
-            Whattofind = input("Which stock price are you interested? ")
+            Whattofind = input("Which stock/stocks price are you interested? (You can enter one or more stocks just separate the stock symbol with space)")
             startdate = input("Startdate (format: YYYY-MM-DD): ")
             enddate = input("Enddate (format: YYYY-MM-DD): ")
             data = yf.download(str(Whattofind), start=str(startdate), end=str(enddate)).to_csv(str(Whattofind) + ".csv")
