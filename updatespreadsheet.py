@@ -85,8 +85,12 @@ def main():
             for file in glob.glob("*.csv"):
                 print(file)
             filename = input("")
-            df = pd.read_csv(filename, header =0, index_col = 'Date', parse_dates=True)
-            print(df)
+            try:
+                df = pd.read_csv(filename, header =0, index_col = 'Date', parse_dates=True)
+                print(df)
+            except ValueError:
+                df = pd.read_csv(filename, skiprows= 1)
+                print(df)
         elif action == 4:
             calc = input("Type Calculation: \n")
             print("Answer: " + str(eval(calc)))
