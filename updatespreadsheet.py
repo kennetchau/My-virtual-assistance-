@@ -1,7 +1,8 @@
 """Codes that allow me to modify my spreadsheet(reworking) as well as looking up the new stock price"""
-import openpyxl
 import yfinance as yf   # downloading data from yahoo finance
 import generalfunction
+import glob, os
+import pandas as pd
 
 
 #theFile = openpyxl.load_workbook("stock portfolio.xlsx")
@@ -46,7 +47,7 @@ def main():
     action = 1
     while action != 0:
         print("What do you want to do today\n")
-        action = generalfunction.getnumber("\npress 1 to search current and historic stock price \npress 2 to download data about a stock \npress 3 to use the calculator \n0 to quit ")
+        action = generalfunction.getnumber("\npress 1 to search current and historic stock price \npress 2 to download data about a stock \npress 3 to view downloaded data \npress 4 to use the calculator \npress 0 to quit ")
         print(action)
         #if action == 1:
             #Whattofind = input("What you want to find? ")
@@ -62,7 +63,7 @@ def main():
             #value = get_role_value(specificCellletter)
             #price = currentSheet['C' + str(value)].value
             #print("\nThe value of the stock "+ Whattofind +" is "+ str(price) +"\n")
-        if action == 1: 
+        if action == 1:
             Whattofind = input("Which stock price are you interested? ")
             whattofindprice = yf.Ticker(Whattofind)
             print("The price of " + Whattofind + " is\n" + str(whattofindprice.history(period="10d")))
@@ -76,7 +77,17 @@ def main():
             startdate = input("Startdate (format: YYYY-MM-DD): ")
             enddate = input("Enddate (format: YYYY-MM-DD): ")
             data = yf.download(str(Whattofind), start=str(startdate), end=str(enddate)).to_csv(str(Whattofind) + ".csv")
+            print("The data have been saved in the directory "+str(os.getcwd()))
         elif action == 3:
+            print("Which csv do you want to open? (Please type the full name): ")
+            currentpathnote = os.getcwd()
+            os.chdir(str(currentpathnote))
+            for file in glob.glob("*.csv"):
+                print(file)
+            filename = input("")
+            df = pd.read_csv(filename, header =0, index_col = 'Date', parse_dates=True)
+            print(df)
+        elif action == 4:
             calc = input("Type Calculation: \n")
             print("Answer: " + str(eval(calc)))
 
