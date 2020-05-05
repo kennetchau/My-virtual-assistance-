@@ -3,6 +3,7 @@ import yfinance as yf   # downloading data from yahoo finance
 import generalfunction
 import glob, os
 import pandas as pd
+import matplotlib.pyplot as plt
 
 
 #theFile = openpyxl.load_workbook("stock portfolio.xlsx")
@@ -66,12 +67,18 @@ def main():
         if action == 1:
             Whattofind = input("Which stock price are you interested? ")
             whattofindprice = yf.Ticker(Whattofind)
-            print("The price of " + Whattofind + " is\n" + str(whattofindprice.history(period="10d")))
+            pricehistory = whattofindprice.history(period="10d")
+            print("The price of " + Whattofind + " is\n" + str(pricehistory))
+            fig = pricehistory['Close'].plot(title = str(Whattofind + " stock price"))
+            plt.show()
             print("Power by yahoo finance")
             option = input("Would you want more data? \npress y for yes \npress n for no \n")
             if option == "y":
                 period = generalfunction.getnumber("How many days of data do you want? ")
-                print("The price of " + Whattofind + " is\n" + str(whattofindprice.history(period=(str(period) +"d"))))
+                pricehistory = whattofindprice.history(period=(str(period) +"d"))
+                fig = pricehistory['Close'].plot(title=str(Whattofind + " stock price"))
+                print("The price of " + Whattofind + " is\n" + str(pricehistory))
+                plt.show()
         elif action == 2:
             Whattofind = input("Which stock/stocks price are you interested? (You can enter one or more stocks just separate the stock symbol with space)")
             startdate = input("Startdate (format: YYYY-MM-DD): ")
