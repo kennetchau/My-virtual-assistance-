@@ -49,6 +49,7 @@ from pandas_datareader import data as pdr
 
 
 def main():
+    plt.clf()
     yf.pdr_override()
     sp500 = pdr.get_data_yahoo('^GSPC',period = ('30d'))
     sp500.head()
