@@ -78,6 +78,7 @@ while chkpromot(promot) != 999:
             apcalculator.showhistory()
     elif chkpromot(promot)==4:
         print("Which notebook do you want to open?")
+        originalpathnote = os.getcwd()
         currentpathnote = os.getcwd()+"/note"
         os.chdir(str(currentpathnote))
         for file in glob.glob("*.txt"):
@@ -97,6 +98,7 @@ while chkpromot(promot) != 999:
                 messages = input("What's the messages? ")
                 file1.write(messages+"\n")
                 file1.close()
+        os.chdir(originalpathnote)
     elif chkpromot(promot)==5:
         print("Would you like to use voice recognition? y/n")
         modechoice = input("")
