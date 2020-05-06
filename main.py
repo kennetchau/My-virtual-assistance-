@@ -9,7 +9,6 @@ import generalfunction
 import glob,os
 
 
-
 def chkpromot(sentence):
     #if the user's input is a greeting, the return a randomly chosen greeting response
     for word in sentence.split():
@@ -21,17 +20,21 @@ def chkpromot(sentence):
             return 3
         if word.lower() in note:
             return 4
+        if word.lower() in settings:
+            return 5
         if word.lower() in exit:
             return 999
 
-
+# ui response
 goodbyeday = ["have a nice day Boss!","Good day Boss!", "I look forward to serve you again Boss!", "See you soon Boss!"]
 goodbyenight =["Good night Boss!", "Take care Boss!"]
+# user inputs list
 stock = ["stock","stocks","investing"]
 time = ["time"]
 fgo = ["ap", "fgo", "fate"]
 exit =["bye","good night","see you later","later","close","exit","Goodbye"]
 note= ["notes","note"]
+settings = ["setting","settings","voice","voice recognition"]
 
 DT = datetime.datetime.now()
 currenttime = "It is " + DT.strftime("%H:%M:%S") + " now"
@@ -51,12 +54,9 @@ else:
     print("Good night boss, " + yourname +" at your service")
     print(currenttime)
 
-print("Would you like to use voice recognition? y/n")
-modechoice = input("")
-if modechoice.lower() == "y":
-    promot = generalfunction.sR()
-else:
-    promot = input("How can I help you today? ")
+modechoice = "n" #disable voice recognition by default
+
+promot = input("How can I help you today? ")
 
 while chkpromot(promot) != 999:
     print(promot)
@@ -97,6 +97,9 @@ while chkpromot(promot) != 999:
                 messages = input("What's the messages? ")
                 file1.write(messages+"\n")
                 file1.close()
+    elif chkpromot(promot)==5:
+        print("Would you like to use voice recognition? y/n")
+        modechoice = input("")
     else:
         print("Please say/type something")
 
