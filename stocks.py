@@ -49,7 +49,6 @@ def main():
     while action != 0:
         print("What do you want to do today\n")
         action = generalfunction.getnumber("\npress 1 to search current and historic stock price \npress 2 to download data about a stock \npress 3 to view downloaded data \npress 4 to use the calculator \npress 0 to quit ")
-        print(action)
         #if action == 1:
             #Whattofind = input("What you want to find? ")
             #specificCellletter = (find_specific_cell(Whattofind))
