@@ -2,7 +2,7 @@
 print("Launching Program")
 
 import datetime
-import updatespreadsheet
+import stocks
 import apcalculator
 import random
 import generalfunction
@@ -23,8 +23,6 @@ def chkpromot(sentence):
             return 4
         if word.lower() in exit:
             return 999
-
-
 
 
 goodbyeday = ["have a nice day Boss!","Good day Boss!", "I look forward to serve you again Boss!", "See you soon Boss!"]
@@ -67,7 +65,7 @@ while chkpromot(promot) != 999:
         currenttime = "It is " + DT.strftime("%H:%M:%S") + " now"
         print(currenttime)
     elif chkpromot(promot)==1:
-        updatespreadsheet.main()
+        stocks.main()
     elif chkpromot(promot)==3:
         print("If you like to calculate ap press 1\nIf you like to view your history press 2\n")
         choice = generalfunction.getnumber("")
