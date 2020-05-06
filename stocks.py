@@ -53,7 +53,7 @@ def main():
     sp500 = pdr.get_data_yahoo('^GSPC',period = ('30d'))
     sp500.head()
     print(sp500)
-    fig = sp500['Close'].plot(title=str('sp500' + " stock price"))
+    fig = sp500['Close'].plot(title=str('sp500'))
     plt.show(block=False)
     action = 1
     while action != 0:
@@ -118,7 +118,7 @@ def main():
             sp500 = pdr.get_data_yahoo('^GSPC', period=('30d'))
             sp500.head()
             print(sp500)
-            fig = sp500['Close'].plot(title=str('sp500' + " stock price"))
+            fig = sp500['Close'].plot(title=str('sp500'))
             plt.show(block=False)
 
         elif action == 5: #A function that allow the user to use the calculator
