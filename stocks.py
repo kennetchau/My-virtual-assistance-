@@ -75,17 +75,18 @@ def main():
             Whattofind = input("Which stock price are you interested? ")
             whattofindprice = yf.Ticker(Whattofind)
             pricehistory = whattofindprice.history(period="10d")
+            print("The price of " + Whattofind + " is\n" + str(pricehistory))
             try:
                 mpf.plot(pricehistory, type='candle',volume=True,title=str(Whattofind),ylabel='OHLC Candles',ylabel_lower='Volume',style='charles')
             except:
                 print()
-            print("The price of " + Whattofind + " is\n" + str(pricehistory))
             option = input("Would you want more data? \npress y for yes \npress n for no \n")
             if option == "y":
                 period = generalfunction.getnumber("How many days of data do you want? ")
                 pricehistory = whattofindprice.history(period=(str(period) +"d"))
-                mpf.plot(pricehistory,type='candle',volume=True,title=str(Whattofind),ylabel='OHLC Candles',ylabel_lower='Volume',style='charles')
                 print("The price of " + Whattofind + " is\n" + str(pricehistory))
+                mpf.plot(pricehistory,type='candle',volume=True,title=str(Whattofind),ylabel='OHLC Candles',ylabel_lower='Volume',style='charles')
+
 
         elif action == 2:    #A function allows the user to download stock data by asking the user to input the stock symbol and the start and end date then save the data into a csv file
             Whattofind = input("Which stock/stocks price are you interested? (You can enter one or more stocks just separate the stock symbol with space)")
