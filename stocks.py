@@ -6,9 +6,8 @@ import yfinance as yf   # downloading data from yahoo finance
 import generalfunction
 import glob, os
 import pandas as pd
-import matplotlib.pyplot as plt
 from pandas_datareader import data as pdr
-
+import mplfinance as mpf
 
 #theFile = openpyxl.load_workbook("stock portfolio.xlsx")
 #allSheetNames = theFile.sheetnames
@@ -49,13 +48,10 @@ from pandas_datareader import data as pdr
 
 
 def main():
-    plt.clf()
     yf.pdr_override()
     sp500 = pdr.get_data_yahoo('^GSPC',period = ('30d'))
-    sp500.head()
-    print(sp500)
-    fig = sp500['Close'].plot(title=str('sp500'))
-    plt.show(block=False)
+    print(sp500.tail())
+    mpf.plot(sp500,type='line')
     action = 1
     while action != 0:
         print("What do you want to do today\n")
@@ -79,19 +75,17 @@ def main():
             Whattofind = input("Which stock price are you interested? ")
             whattofindprice = yf.Ticker(Whattofind)
             pricehistory = whattofindprice.history(period="10d")
+            try:
+                mpf.plot(pricehistory, type='candle')
+            except:
+                print()
             print("The price of " + Whattofind + " is\n" + str(pricehistory))
-            plt.clf()
-            fig = pricehistory['Close'].plot(title = str(Whattofind + " stock price"))
-            plt.show(block=False)
-            print("Power by yahoo finance")
             option = input("Would you want more data? \npress y for yes \npress n for no \n")
             if option == "y":
                 period = generalfunction.getnumber("How many days of data do you want? ")
-                plt.clf()
                 pricehistory = whattofindprice.history(period=(str(period) +"d"))
-                fig = pricehistory['Close'].plot(title=str(Whattofind + " stock price"))
+                mpf.plot(pricehistory,type='candle')
                 print("The price of " + Whattofind + " is\n" + str(pricehistory))
-                plt.show(block=False)
 
         elif action == 2:    #A function allows the user to download stock data by asking the user to input the stock symbol and the start and end date then save the data into a csv file
             Whattofind = input("Which stock/stocks price are you interested? (You can enter one or more stocks just separate the stock symbol with space)")
@@ -115,12 +109,10 @@ def main():
                 print(df)
 
         elif action == 4: #A function allows the user to search up s&p 500 index history
-            plt.clf()
             sp500 = pdr.get_data_yahoo('^GSPC', period=('30d'))
-            sp500.head()
-            print(sp500)
-            fig = sp500['Close'].plot(title=str('sp500'))
-            plt.show(block=False)
+            print(sp500.tail())
+            mpf.plot(sp500, type='line')
+
 
         elif action == 5: #A function that allow the user to use the calculator
             calc = input("Type Calculation: \n")
