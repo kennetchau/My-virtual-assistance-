@@ -51,7 +51,7 @@ def main():
     yf.pdr_override()
     sp500 = pdr.get_data_yahoo('^GSPC',period = ('30d'))
     print(sp500.tail())
-    mpf.plot(sp500,type='line')
+    mpf.plot(sp500,type='line',title='S&P 500')
     action = 1
     while action != 0:
         print("What do you want to do today\n")
@@ -76,7 +76,7 @@ def main():
             whattofindprice = yf.Ticker(Whattofind)
             pricehistory = whattofindprice.history(period="10d")
             try:
-                mpf.plot(pricehistory, type='candle')
+                mpf.plot(pricehistory, type='candle',volume=True,title=str(Whattofind),ylabel='OHLC Candles',ylabel_lower='Volume',style='charles')
             except:
                 print()
             print("The price of " + Whattofind + " is\n" + str(pricehistory))
@@ -84,7 +84,7 @@ def main():
             if option == "y":
                 period = generalfunction.getnumber("How many days of data do you want? ")
                 pricehistory = whattofindprice.history(period=(str(period) +"d"))
-                mpf.plot(pricehistory,type='candle')
+                mpf.plot(pricehistory,type='candle',volume=True,title=str(Whattofind),ylabel='OHLC Candles',ylabel_lower='Volume',style='charles')
                 print("The price of " + Whattofind + " is\n" + str(pricehistory))
 
         elif action == 2:    #A function allows the user to download stock data by asking the user to input the stock symbol and the start and end date then save the data into a csv file
@@ -111,7 +111,7 @@ def main():
         elif action == 4: #A function allows the user to search up s&p 500 index history
             sp500 = pdr.get_data_yahoo('^GSPC', period=('30d'))
             print(sp500.tail())
-            mpf.plot(sp500, type='line')
+            mpf.plot(sp500,type='line',title='S&P 500')
 
 
         elif action == 5: #A function that allow the user to use the calculator
