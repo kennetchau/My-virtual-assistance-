@@ -110,9 +110,13 @@ def main():
                 print(df)
 
         elif action == 4: #A function allows the user to search up s&p 500 index history
-            sp500 = pdr.get_data_yahoo('^GSPC', period=('30d'))
+            choice = 0
+            sp500 = pdr.get_data_yahoo('^GSPC', period=('60d'))
             print(sp500.tail())
             mpf.plot(sp500,type='line',title='S&P 500')
+            choice = input("Do you want to show the candle plot? (y/n)")
+            if choice == 'y':
+                mpf.plot(sp500,type='candle',title = 'S&P 500', style = 'charles')
 
 
         elif action == 5: #A function that allow the user to use the calculator
