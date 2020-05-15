@@ -108,7 +108,11 @@ while chkpromot(promot) != 999:
         os.chdir(originalpathnote)
 
     elif chkpromot(promot)==5:
-        news.main()
+        choice = input("Would you like to get news from new york times (press 1) or cnbc? (press 2)")
+        if choice == str(1):
+            news.main("https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml")
+        if choice == str(2):
+            news.main("https://www.cnbc.com/id/100003114/device/rss/rss.html")
 
     elif chkpromot(promot)==6:
         print("Would you like to use voice recognition? y/n")
