@@ -16,4 +16,4 @@ def main():
         print(news.title.text)
         print(news.link.text)
         print(news.pubDate.text)
-        print("-"*20)
+        print("-"*10)
