@@ -6,6 +6,7 @@ import stocks
 import apcalculator
 import random
 import generalfunction
+import news
 import glob,os
 
 
@@ -20,8 +21,10 @@ def chkpromot(sentence):
             return 3
         if word.lower() in note:
             return 4
-        if word.lower() in settings:
+        if word.lower() in new:
             return 5
+        if word.lower() in settings:
+            return 6
         if word.lower() in exit:
             return 999
 
@@ -35,6 +38,7 @@ fgo = ["ap", "fgo", "fate"]
 exit =["bye","good night","see you later","later","close","exit","Goodbye"]
 note= ["notes","note"]
 settings = ["setting","settings","voice","voice recognition"]
+new = ['Whats new', 'news', "today's news"]
 
 DT = datetime.datetime.now()
 currenttime = "It is " + DT.strftime("%H:%M:%S") + " now"
@@ -64,8 +68,10 @@ while chkpromot(promot) != 999:
         DT = datetime.datetime.now()
         currenttime = "It is " + DT.strftime("%H:%M:%S") + " now"
         print(currenttime)
+
     elif chkpromot(promot)==1:
         stocks.main()
+
     elif chkpromot(promot)==3:
         print("If you like to calculate ap press 1\nIf you like to view your history press 2\n")
         choice = generalfunction.getnumber("")
@@ -76,6 +82,7 @@ while chkpromot(promot) != 999:
             apcalculator.cal()
         elif choice ==2:
             apcalculator.showhistory()
+
     elif chkpromot(promot)==4:
         print("Which notebook do you want to open?")
         originalpathnote = os.getcwd()
@@ -91,7 +98,7 @@ while chkpromot(promot) != 999:
                 end =1
             elif action == 1:
                 file1 = open(filename, "r")
-                print(file1.readlines())
+                print(file1.read().splitlines())
                 file1.close()
             elif action == 2:
                 file1 = open(filename, "a+")
@@ -99,9 +106,14 @@ while chkpromot(promot) != 999:
                 file1.write(messages+"\n")
                 file1.close()
         os.chdir(originalpathnote)
+
     elif chkpromot(promot)==5:
+        news.main()
+
+    elif chkpromot(promot)==6:
         print("Would you like to use voice recognition? y/n")
         modechoice = input("")
+
     else:
         print("Please say/type something")
 
