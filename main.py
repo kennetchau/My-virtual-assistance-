@@ -25,6 +25,8 @@ def chkpromot(sentence):
             return 5
         if word.lower() in settings:
             return 6
+        if word.lower() in helps:
+            return 0
         if word.lower() in exit:
             return 999
 
@@ -39,6 +41,7 @@ exit =["bye","good night","see you later","later","close","exit","Goodbye"]
 note= ["notes","note"]
 settings = ["setting","settings","voice","voice recognition"]
 new = ['Whats new', 'news', "today's news"]
+helps = ['help']
 
 DT = datetime.datetime.now()
 currenttime = "It is " + DT.strftime("%H:%M:%S") + " now"
@@ -121,6 +124,9 @@ while chkpromot(promot) != 999:
     elif chkpromot(promot)==6:
         print("Would you like to use voice recognition? y/n")
         modechoice = input("")
+
+    elif chkpromot(promot)==0:
+        print("type stock to find stocks \ntype time to check time \ntype note to check note\ntype news to check news\ntype setting to check voice recognition settings\ntype exit to leave")
 
     else:
         print("Please say/type something")
