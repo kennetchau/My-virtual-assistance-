@@ -120,8 +120,10 @@ def main():
 
 
         elif action == 5: #A function that allow the user to use the calculator
-            calc = input("Type Calculation: \n")
-            print("Answer: " + str(eval(calc)))
+            calc = ""
+            while calc != 'exit':
+                calc = input("Type Calculation (type exit to exit): \n")
+                print("Answer: " + str(eval(calc)))
 
 
 
