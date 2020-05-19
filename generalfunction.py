@@ -1,7 +1,9 @@
 import speech_recognition as sr
 
+
 def sR():
     r = sr.Recognizer()
+    r.energy_threshold = 4000
     with sr.Microphone() as source:
         print("Speak anything: ")
         audio = r.listen(source)
@@ -25,9 +27,5 @@ def getnumber(message):
             return userInput
             break
 
-def checklarger(fint,sint):
-    if fint<sint:
-        return True
-    else:
-        return False
+
 

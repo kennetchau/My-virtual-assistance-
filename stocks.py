@@ -8,6 +8,7 @@ import glob, os
 import pandas as pd
 from pandas_datareader import data as pdr
 import mplfinance as mpf
+import financeplayground
 
 #theFile = openpyxl.load_workbook("stock portfolio.xlsx")
 #allSheetNames = theFile.sheetnames
@@ -55,7 +56,7 @@ def main():
     action = 1
     while action != 0:
         print("What do you want to do today\n")
-        action = generalfunction.getnumber("\npress 1 to search current and historic stock price \npress 2 to download data about a stock \npress 3 to view downloaded data \npress 4 to show s&p 500 index \npress 5 to use the calculator \npress 0 to quit ")
+        action = generalfunction.getnumber("\npress 1 to search current and historic stock price \npress 2 to download data about a stock \npress 3 to view downloaded data \npress 4 to show s&p 500 index \npress 5 to get all s&p 500 ticker \npress 6 to get all s&p 500 data \npress 7 to use the calculator \npress 0 to quit ")
         #if action == 1:
             #Whattofind = input("What you want to find? ")
             #specificCellletter = (find_specific_cell(Whattofind))
@@ -118,8 +119,13 @@ def main():
             if choice == 'y':
                 mpf.plot(sp500,type='candle',title = 'S&P 500', style = 'charles')
 
+        elif action == 5: #get s&p 500 ticker
+            financeplayground.save_sp500_tickers()
 
-        elif action == 5: #A function that allow the user to use the calculator
+        elif action == 6: #download s&p 500 data
+            financeplayground.get_data_from_yahoo()
+
+        elif action == 7: #A function that allow the user to use the calculator
             calc = ""
             while calc != 'exit':
                 calc = input("Type Calculation (type exit to exit): \n")
