@@ -126,6 +126,9 @@ def main():
 
         elif action == 5: #get s&p 500 ticker
             financeplayground.save_sp500_tickers()
+            with open("sp500tickers.pickle", "rb") as f:
+                tickers = pickle.load(f)
+                print(tickers)
 
         elif action == 6: #download s&p 500 data
             if not os.path.exists('lastdownloadsp.dat'): ##check if the user have download the data before
