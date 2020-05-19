@@ -10,6 +10,7 @@ from pandas_datareader import data as pdr
 import mplfinance as mpf
 import financeplayground
 import datetime
+import pickle
 
 #theFile = openpyxl.load_workbook("stock portfolio.xlsx")
 #allSheetNames = theFile.sheetnames
@@ -127,7 +128,20 @@ def main():
             financeplayground.save_sp500_tickers()
 
         elif action == 6: #download s&p 500 data
-            financeplayground.get_data_from_yahoo()
+            if not os.path.exists('lastdownloadsp.dat'): ##check if the user have download the data before
+                financeplayground.get_data_from_yahoo(input = 'y')
+                timeofcompletion = datetime.datetime.now()
+                lastdownloadsp = open('lastdownloadsp.dat','wb')
+                pickle.dump(str(timeofcompletion),lastdownloadsp)
+                lastdownloadsp.close()
+            else:
+                lastdownloadsp = open('lastdownloadsp.dat','rb') ##if the user have download the data before, print the last update date and ask the user if he want to redownload it
+                value = pickle.load(lastdownloadsp)
+                print("You have download the s&p 500 data at "+value+" do you want to redownload it?")
+                choice = input('y/n')
+                if choice == 'y':
+                    financeplayground.get_data_from_yahoo(input = 'y')
+
 
         elif action == 7: #A function that allow the user to use the calculator
             calc = ""
