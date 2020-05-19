@@ -9,6 +9,7 @@ import pandas as pd
 from pandas_datareader import data as pdr
 import mplfinance as mpf
 import financeplayground
+import datetime
 
 #theFile = openpyxl.load_workbook("stock portfolio.xlsx")
 #allSheetNames = theFile.sheetnames
@@ -91,9 +92,12 @@ def main():
 
         elif action == 2:    #A function allows the user to download stock data by asking the user to input the stock symbol and the start and end date then save the data into a csv file
             Whattofind = input("Which stock/stocks price are you interested? (You can enter one or more stocks just separate the stock symbol with space)")
-            startdate = input("Startdate (format: YYYY-MM-DD): ")
-            enddate = input("Enddate (format: YYYY-MM-DD): ")
-            data = yf.download(str(Whattofind), start=str(startdate), end=str(enddate)).to_csv(str(Whattofind) + ".csv")
+            startdate = input("Startdate (format: YYYY/MM/DD): ")
+            enddate = input("Enddate (format: YYYY/MM/DD): ")
+            startdate = generalfunction.changestringtodate(startdate)
+            enddate = generalfunction.changestringtodate(enddate)
+            enddate = enddate + datetime.timedelta(days=1)
+            data = yf.download(str(Whattofind), start=startdate, end=enddate).to_csv(str(Whattofind) + ".csv")
             print("The data have been saved in the directory "+str(os.getcwd()))
 
         elif action == 3:   #A function to allow user to open csv files

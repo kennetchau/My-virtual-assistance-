@@ -1,5 +1,5 @@
 import speech_recognition as sr
-
+import datetime
 
 def sR():
     r = sr.Recognizer()
@@ -27,5 +27,8 @@ def getnumber(message):
             return userInput
             break
 
-
+def changestringtodate(input):
+    format_str = '%Y/%m/%d'
+    datetime_obj = datetime.datetime.strptime(input,format_str)
+    return datetime_obj
 
