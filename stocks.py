@@ -130,9 +130,10 @@ def main():
                 tickers = pickle.load(f)
                 print(tickers)
 
-        elif action == 6: #download s&p 500 data
-            if not os.path.exists('lastdownloadsp.dat'): ##check if the user have download the data before
+        elif action == 6: #download s&p 500 data and automatically compile them into a separate file contain all the adjusted close
+            if not os.path.exists('lastdownloadsp.dat'): ##check if the user have download the data before, if not automatically download the data
                 financeplayground.get_data_from_yahoo(input = 'y')
+                financeplayground.compile_data()
                 timeofcompletion = datetime.datetime.now()
                 lastdownloadsp = open('lastdownloadsp.dat','wb')
                 pickle.dump(str(timeofcompletion),lastdownloadsp)
@@ -144,6 +145,7 @@ def main():
                 choice = input('y/n')
                 if choice == 'y':
                     financeplayground.get_data_from_yahoo(input = 'y')
+                    financeplayground.compile_data()
                     timeofcompletion = datetime.datetime.now()
                     lastdownloadsp = open('lastdownloadsp.dat', 'wb')
                     pickle.dump(str(timeofcompletion), lastdownloadsp)
