@@ -71,6 +71,7 @@ def compile_data():
 def visualize_data():
     df = pd.read_csv('sp500_joined_closed.csv')
     df_corr = df.corr()
+    df_corr.to_csv('df_corr.csv')
     print(df_corr.head())
     data = df_corr.values
     fig = plt.figure()
