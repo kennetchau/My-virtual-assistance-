@@ -1,7 +1,6 @@
 """Codes that allow me to modify my spreadsheet(reworking) as well as looking up the new stock price"""
 import warnings
-warnings.filterwarnings("ignore") #Suppress Future warning from pandas.util.testing
-"""Other packages"""
+warnings.filterwarnings("ignore",category=FutureWarning)
 import yfinance as yf   # downloading data from yahoo finance
 import generalfunction
 import glob, os
@@ -58,7 +57,7 @@ def main():
     action = 1
     while action != 0:
         print("What do you want to do today\n")
-        action = generalfunction.getnumber("\npress 1 to search current and historic stock price \npress 2 to download data about a stock \npress 3 to view downloaded data \npress 4 to show s&p 500 index \npress 5 to get all s&p 500 ticker \npress 6 to get all s&p 500 data \npress 7 to use the calculator \npress 0 to quit ")
+        action = generalfunction.getnumber("\npress 1 to search current and historic stock price \npress 2 to download data about a stock \npress 3 to view downloaded data \npress 4 to show s&p 500 index \npress 5 to get all s&p 500 ticker \npress 6 to get all s&p 500 data (WARNING: THIS WILL TAKE A WHILE)\npress 7 to show the correlation heatmap between stock (WARNING: THIS WILL TAKE A WHILE) \npress 8 to use the calculator \npress 0 to quit ")
         #if action == 1:
             #Whattofind = input("What you want to find? ")
             #specificCellletter = (find_specific_cell(Whattofind))
@@ -153,7 +152,10 @@ def main():
                     lastdownloadsp.close()
 
 
-        elif action == 7: #A function that allow the user to use the calculator
+        elif action == 7:
+            financeplayground.visualize_data()
+
+        elif action == 8: #A function that allow the user to use the calculator
             calc = ""
             while calc != 'exit':
                 calc = input("Type Calculation (type exit to exit): \n")

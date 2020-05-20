@@ -93,4 +93,4 @@ def visualize_data():
     plt.show()
 
 
-visualize_data()
+#visualize_data()
