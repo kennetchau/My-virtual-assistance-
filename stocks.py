@@ -83,12 +83,13 @@ def main():
                 mpf.plot(pricehistory, type='candle',volume=True,title=str(Whattofind),ylabel='OHLC Candles',ylabel_lower='Volume',style='charles')
             except:
                 print()
-            option = input("Would you want more data? \npress y for yes \npress n for no \n")
-            if option == "y":
+            option = input("Would you want more data? y/n")
+            while option == "y":
                 period = generalfunction.getnumber("How many days of data do you want? ")
                 pricehistory = whattofindprice.history(period=(str(period) +"d"))
                 print("The price of " + Whattofind + " is\n" + str(pricehistory))
                 mpf.plot(pricehistory,type='candle',volume=True,title=str(Whattofind),ylabel='OHLC Candles',ylabel_lower='Volume',style='charles')
+                option = input("Would you want more data? y/n")
 
 
         elif action == 2:    #A function allows the user to download stock data by asking the user to input the stock symbol and the start and end date then save the data into a csv file
