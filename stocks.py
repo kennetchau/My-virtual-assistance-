@@ -153,6 +153,8 @@ def main():
 
 
         elif action == 7:
+            if not os.path.exists('sp500_joined_closed.csv'):
+                financeplayground.compile_data()
             financeplayground.visualize_data()
 
         elif action == 8: #A function that allow the user to use the calculator
