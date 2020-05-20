@@ -144,6 +144,10 @@ def main():
                 choice = input('y/n')
                 if choice == 'y':
                     financeplayground.get_data_from_yahoo(input = 'y')
+                    timeofcompletion = datetime.datetime.now()
+                    lastdownloadsp = open('lastdownloadsp.dat', 'wb')
+                    pickle.dump(str(timeofcompletion), lastdownloadsp)
+                    lastdownloadsp.close()
 
 
         elif action == 7: #A function that allow the user to use the calculator
