@@ -1,13 +1,14 @@
 """Basic interface for my programs """
 print("Launching Program")
 
-import datetime
+import datetime as dt
 import stocks
 import apcalculator
 import random
 import generalfunction
 import news
 import glob,os
+
 
 
 def chkpromot(sentence):
@@ -43,7 +44,7 @@ settings = ["setting","settings","voice","voice recognition"]
 new = ['Whats new', 'news', "today's news"]
 helps = ['help']
 
-DT = datetime.datetime.now()
+DT = dt.datetime.now()
 currenttime = "It is " + DT.strftime("%H:%M:%S") + " now"
 
 yourname = ("Anew")
@@ -68,7 +69,7 @@ promot = input("How can I help you today? ")
 while chkpromot(promot) != 999:
     print(promot)
     if chkpromot(promot)==2:
-        DT = datetime.datetime.now()
+        DT = dt.datetime.now()
         currenttime = "It is " + DT.strftime("%H:%M:%S") + " now"
         print(currenttime)
 
