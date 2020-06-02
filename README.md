@@ -6,7 +6,6 @@ Using packages such as panda to get stock info and SpeechRecognition for speech 
 
 Using packages such as mplfinance to plot stock prices and pandas to read and write csv files 
 
-In the future, I would like to include a machine learning chatbot to bring a more human like response and a buddy to talk to if you're bored
 
 ## Install requires packages:
 Use the package manager pip to install the requirenment package
