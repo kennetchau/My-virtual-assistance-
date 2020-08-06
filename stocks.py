@@ -173,9 +173,17 @@ def main():
             sp500 = pdr.get_data_yahoo(stockidx, period=('60d'))
             print(sp500.tail())
             mpf.plot(sp500,type='line',title=stockidx)
-            choice = input("Do you want to show the candle plot? (y/n)")
-            if choice == 'y':
+            choice  = gf.getnumber("What would you like to do?\nPress 1 to show the candle plot\nPress 2 to download data\n")
+            if choice == 1:
                 mpf.plot(sp500,type='candle',title = stockidx , style = 'charles')
+            if choice == 2:
+                lastdownload = open('history/downloadhistory.dat', 'rb')
+                history = pickle.load(lastdownload)
+                hisstart = pickle.load(lastdownload)
+                hisend = pickle.load(lastdownload)
+                startdate = gf.changestringtodate(hisstart)
+                enddate = gf.changestringtodate(hisend)
+                data = yf.download(str(stockidx), start=startdate, end=enddate).to_csv(str(stockidx) + ".csv")
 
         elif action == 5: #get tickers
             action = gf.getnumber("Which ticket do you want to get?\ns&p press 1\nnasdaq press 2")
@@ -225,6 +233,7 @@ def main():
             #print(pricehistory)
             #df = pd.DataFrame(pricehistory,stockid,index = 'Date')
             #print(df)
+
 
 
 
