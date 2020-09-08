@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib import style
 import generalfunction as gf
+
 style.use('ggplot')
 yf.pdr_override()
 

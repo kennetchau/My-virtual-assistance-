@@ -112,7 +112,7 @@ while chkpromot(promot) != 999:
         os.chdir(originalpathnote)
 
     elif chkpromot(promot)==5:
-        choice = generalfunction.getnumber("Would you like to get news from new york times (press 1), cnbc (press 2), financial times(press 3), cbc(press4)? ")
+        choice = generalfunction.getnumber("Would you like to get news from new york times (press 1), cnbc (press 2), financial times(press 3), reuters(press 4), cbc(press5)? ")
         print("")
         print("_"*30)
         if choice == 1:
@@ -121,8 +121,10 @@ while chkpromot(promot) != 999:
             news.main("https://www.cnbc.com/id/100003114/device/rss/rss.html")
         if choice == 3:
             news.main("https://www.ft.com/?format=rss")
-        if choice == 4:
+        if choice == 5:
             news.main("https://www.cbc.ca/cmlink/rss-topstories")
+        if choice == 4:
+            news.main("https://news.google.com/rss/search?q=when:24h+allinurl:reuters.com&ceid=US:en&hl=en-US&gl=US")
 
     elif chkpromot(promot)==6:
         print("Would you like to use voice recognition? y/n")
