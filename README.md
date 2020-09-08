@@ -6,6 +6,8 @@ Using packages such as panda to get stock info and SpeechRecognition for speech 
 
 Using packages such as mplfinance to plot stock prices and pandas to read and write csv files 
 
+UPDATE: Added summarize function, using newspaper3k now the program can summarize news
+
 
 ## Install requires packages:
 Use the package manager pip to install the requirenment package
