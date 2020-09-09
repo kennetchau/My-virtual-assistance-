@@ -1,4 +1,4 @@
-# My-virtual-assistance-
+# My-virtual-assistant-
 ## General
 A simple script for a virtual assistance, included function such as searching up stock, getting the time, saving notes and others 
 
