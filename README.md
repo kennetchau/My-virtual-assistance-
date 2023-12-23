@@ -42,7 +42,7 @@ Currently, the program recognize the user input by keywords. Which means if the 
 ## Contact 
 Name: Ming Yin Kenneth Chau 
 
-Email: kennetchau@gmail.com
+Email: kenetx@pm.me
 
 
 
